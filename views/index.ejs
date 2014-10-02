@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <script>
+        var ws=new WebSocket('ws://127.0.0.1:3001');
+        ws.onopen=function(){
+            ws.send('aaa');
+        };
+    </script>
+  </body>
+</html>
