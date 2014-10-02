@@ -6,6 +6,7 @@ var router=express.Router();
 var domain = require('domain');
 var combo=require('./combo');
 var path=require('path');
+var config=require('../../config');
 var d = domain.create();
 d.on('error', function (err) {
     console.log(err);
@@ -16,7 +17,10 @@ router.use(function(req,res,next){
 });
 
 /*这里是用来配置静态访问的路由的，以后只需在这里增加路由*/
-router.use('/volunteer',staticPath('/volunteer'));
+config.path.forEach(function(item){
+    router.use(item,staticPath(item));
+});
+
 /**/
 /*这里是用来启动combo的,可以配置seajs combo或普通的combo*/
 router.use(combo);
