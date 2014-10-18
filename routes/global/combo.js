@@ -26,6 +26,9 @@ module.exports = function (req, res, next) {
         },
         function (callback) {
             var p=path.join(fullPath,js[count]);
+            if(!fs.existsSync(p)){
+                return callback();
+            }
             var stream = fs.createReadStream(p);
             var c = concat({
                 encoding: 'string'
